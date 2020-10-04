@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block container %}
+
+<main class="container mt-3">
+  <!-- HERO -->
+  <section class="jumbotron text-center mt-4" style="background: url('https://krot.info/uploads/posts/2020-01/1579434193_33-119.jpg'); background-position: center center; background-size: 100%">
+    <h1 class="display-4">Всякие туры</h1>
+    <p class="lead">{{ subtitle }}</p>
+    <p class="mt-5 w-50 mx-auto">{{ description }}</p>
+  </section>
+  <!-- CARDS -->
+  <div class="row mt-5">
+    {% for key, value in tours.items() %}
+      {% if (key % 2 == 0) and (key < 13) %}
+    <div class="col-4">
+      <div class="card mb-4">
+        <div class="embed-responsive embed-responsive-16by9">
+           <img class="card-img-top embed-responsive-item" src="{{ value.picture }}" alt="" />
+        </div>
+        <div class="card-body">
+          <h2 class="h5 card-title">{{ value.title }} {{ value.stars }}★</h2>
+          <p class="card-text">{{ value.description }}</p>
+          <a href="/tours/{{ key }}/" class="btn btn-sm btn-primary">Подробнее</a>
+        </div>
+      </div>
+    </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</main>
+
+{% endblock %}
