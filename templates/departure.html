@@ -4,7 +4,7 @@
 
 <main class="container mt-3">
   <h1 class="display-5 mt-4">Летим {{ departures[departure] }}</h1>
-  <p class="mb-4">Найдено {{ tours_dep_str|length }} туров, от {{ (tours_dep_str|min(attribute="price")).price }} до {{ (tours_dep_str|max(attribute="price")).price }} и от {{ (tours_dep_str|min(attribute="nights")).nights }} ночей до {{ (tours_dep_str|max(attribute="nights")).nights }} ночей</p>
+  <p class="mb-4">Найдено {{ tours_dep | length }} туров, от {{ (tours_dep.values() | min(attribute="price")).price }} до {{ (tours_dep.values() | max(attribute="price")).price }} и от {{ (tours_dep.values() | min(attribute="nights")).nights }} ночей до {{ (tours_dep.values() | max(attribute="nights")).nights }} ночей</p>
   <!-- CARDS -->
   <div class="row mt-5">
     {% for key, value in tours_dep.items() %}

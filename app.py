@@ -27,14 +27,11 @@ def re_main():
 def re_departure(departure):
     # Фильтруем отели по привязке к месту вылета
     tours_dep = {}
-    tours_dep_str = []
     for key, value in tours.items():
-        for value1 in value.values():
-            if value1 == departure:
-                tours_dep[key] = value
-                tours_dep_str.append(value)
+        if departure in value.values():
+            tours_dep[key] = value
     return render_template('departure.html', title=title, departure=departure, departures=departures,
-                           tours_dep=tours_dep, tours_dep_str=tours_dep_str)
+                           tours_dep=tours_dep)
 
 
 @app.route('/tours/<int:id>/')
