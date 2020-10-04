@@ -11,8 +11,7 @@
   </section>
   <!-- CARDS -->
   <div class="row mt-5">
-    {% for key, value in tours.items() %}
-      {% if (key % 2 == 0) and (key < 13) %}
+    {% for key, value in tours_random.items() %}
     <div class="col-4">
       <div class="card mb-4">
         <div class="embed-responsive embed-responsive-16by9">
@@ -25,7 +24,6 @@
         </div>
       </div>
     </div>
-      {% endif %}
     {% endfor %}
   </div>
 </main>

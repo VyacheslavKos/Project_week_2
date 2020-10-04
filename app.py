@@ -1,5 +1,11 @@
-from flask import Flask, render_template
-from static.data import title, subtitle, description, departures, tours
+from flask import Flask
+from flask import render_template
+from static.data import title
+from static.data import subtitle
+from static.data import description
+from static.data import departures
+from static.data import tours
+from random import randint
 
 
 app = Flask(__name__)
@@ -7,12 +13,19 @@ app = Flask(__name__)
 
 @app.route('/')
 def re_main():
-    return render_template('index.html', title=title, tours=tours, subtitle=subtitle, description=description,
-                           departures=departures)
+    # Выбираем произвольные 6 отелей
+    tours_random = {}
+    while len(tours_random) < 6:
+        random_tour = randint(1, len(tours))
+        if random_tour not in tours_random.keys():
+            tours_random[random_tour] = tours[random_tour]
+    return render_template('index.html', title=title, tours_random=tours_random, subtitle=subtitle,
+                           description=description, departures=departures)
 
 
 @app.route('/departures/<departure>/')
 def re_departure(departure):
+    # Фильтруем отели по привязке к месту вылета
     tours_dep = {}
     tours_dep_str = []
     for key, value in tours.items():
